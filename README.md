@@ -21,7 +21,9 @@ t.has(0.1) # True
 t.has(0.6) # False
 t.get() # returns remaining time
 t.reset() # resets timeout counter
-t.check(message=message) # raises TimeoutException if timed out
+
+# raises TimeoutException if timeout is expired, message is optional
+t.check(message=message)
 ```
 
 ### Custom timeout exception
