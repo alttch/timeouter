@@ -1,0 +1,8 @@
+__pycache__
+timeouter.egg-info
+build
+dist
+Makefile
+.idea/
+TODO.todo
+*.pyc
