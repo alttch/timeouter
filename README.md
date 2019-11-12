@@ -45,7 +45,7 @@ timeouter.set_default_exception_class(MyException)
 ### Thread-local usage
 
 ```python
-# init
+# init for the current thread
 timeouter.init(1)
 time.sleep(2)
 # module methods check, get, has, reset, set_timeout and set_exception_class
