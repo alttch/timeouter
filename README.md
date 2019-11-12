@@ -2,6 +2,12 @@
 
 Timeout helper tools library for Python
 
+## Install
+
+```python
+pip3 install timeouter
+```
+
 ## Examples
 
 ### Simple class usage
