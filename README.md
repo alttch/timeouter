@@ -34,7 +34,8 @@ t.set_exception_class(MyException)
 ```
 
 Default exception
-```
+
+```python
 class MyException(Exception): pass
 timeouter.set_default_exception_class(MyException)
 ```
