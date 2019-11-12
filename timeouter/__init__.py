@@ -11,7 +11,7 @@ class TimeoutException(Exception):
 
 
 def init(timeout):
-    g._to = timeouter.core.Timeouter(timeout)
+    g._to = timeouter.core.Timer(timeout)
 
 
 def check(message=None):
@@ -43,4 +43,4 @@ def set_default_exception_class(e):
 
 
 set_default_exception_class(TimeoutException)
-Timeouter = timeouter.core.Timeouter
+Timer = timeouter.core.Timer

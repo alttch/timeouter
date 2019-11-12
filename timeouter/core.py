@@ -1,8 +1,11 @@
 import time
 
-class TimeoutException(Exception): pass
 
-class Timeouter():
+class TimeoutException(Exception):
+    pass
+
+
+class Timer():
 
     def __init__(self, timeout):
         self.set_timeout(timeout)

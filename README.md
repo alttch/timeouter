@@ -15,7 +15,7 @@ pip3 install timeouter
 ```python
 import timeouter, time
 
-t = timeouter.Timeouter(1)
+t = timeouter.Timer(1)
 time.sleep(0.5)
 t.has(0.1) # True
 t.has(0.6) # False

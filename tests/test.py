@@ -38,7 +38,7 @@ class Test(unittest.TestCase):
         timeouter.check()
 
     def test002_object(self):
-        t = timeouter.Timeouter(0.1)
+        t = timeouter.Timer(0.1)
         time.sleep(0.05)
         self.assertTrue(t.has(0.01))
         self.assertFalse(t.has(1))
