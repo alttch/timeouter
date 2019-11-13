@@ -2,7 +2,6 @@
 
 from pathlib import Path
 import sys
-import os
 
 sys.path.insert(0, Path().absolute().parent.as_posix())
 import timeouter
@@ -11,8 +10,6 @@ import unittest
 import time
 
 from types import SimpleNamespace
-
-result = SimpleNamespace()
 
 
 class CustomTimeoutException(Exception):
