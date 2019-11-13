@@ -1,13 +1,9 @@
-__version__ = '0.0.6'
+__version__ = '0.0.7'
 
 import threading
 import timeouter.core
 
 g = threading.local()
-
-
-class TimeoutException(Exception):
-    pass
 
 
 def init(timeout):
@@ -42,5 +38,5 @@ def set_default_exception_class(e):
     timeouter.core.TimeoutException = e
 
 
-set_default_exception_class(TimeoutException)
+set_default_exception_class(TimeoutError)
 Timer = timeouter.core.Timer

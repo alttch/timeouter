@@ -38,7 +38,7 @@ class Test(unittest.TestCase):
         self.assertFalse(t.has(1))
         time.sleep(0.06)
         self.assertFalse(t.has(0.01))
-        self.assertRaises(t.TimeoutException, t.check)
+        self.assertRaises(TimeoutError, t.check)
         t.set_exception_class(CustomTimeoutException)
         self.assertRaises(CustomTimeoutException, t.check)
         t.reset()
