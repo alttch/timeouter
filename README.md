@@ -28,17 +28,19 @@ t.check(message=message)
 
 ### Custom timeout exception
 
-Exception for the single class
+Exception for the single timer object
 
 ```python
 class MyException(Exception): pass
+
 t.set_exception_class(MyException)
 ```
 
-Default exception
+Default exception for all new timers
 
 ```python
 class MyException(Exception): pass
+
 timeouter.set_default_exception_class(MyException)
 ```
 
