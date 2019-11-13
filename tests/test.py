@@ -32,6 +32,12 @@ class Test(unittest.TestCase):
     def test002_object(self):
         self.check_timer(timeouter.Timer(0.1))
 
+    def test099_default_exception(self):
+        timeouter.set_default_exception_class(CustomTimeoutException)
+        t = timeouter.Timer(0.01)
+        time.sleep(0.011)
+        self.assertRaises(CustomTimeoutException, t.check)
+
     def check_timer(self, t):
         time.sleep(0.05)
         self.assertTrue(t.has(0.01))
