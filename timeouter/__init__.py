@@ -1,4 +1,4 @@
-__version__ = '0.0.4'
+__version__ = '0.0.5'
 
 import threading
 import timeouter.core
@@ -18,8 +18,8 @@ def check(message=None):
     return g._to.check(message)
 
 
-def get():
-    return g._to.get()
+def get(chunks=1):
+    return g._to.get(chunks=chunks)
 
 
 def has(timeout):

@@ -14,7 +14,9 @@ from types import SimpleNamespace
 
 result = SimpleNamespace()
 
-class CustomTimeoutException(Exception): pass
+
+class CustomTimeoutException(Exception):
+    pass
 
 
 class Test(unittest.TestCase):
@@ -25,20 +27,12 @@ class Test(unittest.TestCase):
 
     def test001_thread(self):
         timeouter.init(0.1)
-        time.sleep(0.05)
-        self.assertTrue(timeouter.has(0.01))
-        self.assertFalse(timeouter.has(1))
-        time.sleep(0.06)
-        self.assertFalse(timeouter.has(0.01))
-        self.assertRaises(timeouter.TimeoutException, timeouter.check)
-        timeouter.set_exception_class(CustomTimeoutException)
-        self.assertRaises(CustomTimeoutException, timeouter.check)
-        timeouter.reset()
-        self.assertTrue(timeouter.has(0.01))
-        timeouter.check()
+        self.check_timer(timeouter)
 
     def test002_object(self):
-        t = timeouter.Timer(0.1)
+        self.check_timer(timeouter.Timer(0.1))
+
+    def check_timer(self, t):
         time.sleep(0.05)
         self.assertTrue(t.has(0.01))
         self.assertFalse(t.has(1))
@@ -50,6 +44,9 @@ class Test(unittest.TestCase):
         t.reset()
         self.assertTrue(t.has(0.01))
         t.check()
+        self.assertLess(t.get(), 0.1)
+        self.assertLess(t.get(5), 0.02)
+
 
 if __name__ == '__main__':
     import argparse

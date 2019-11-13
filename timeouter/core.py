@@ -20,8 +20,8 @@ class Timer():
             raise self.TimeoutException(
                 message) if message is not None else self.TimeoutException
 
-    def get(self):
-        return self.start_time + self._timeout - time.monotonic()
+    def get(self, chunks=1):
+        return (self.start_time + self._timeout - time.monotonic()) / chunks
 
     def reset(self):
         self.start_time = time.monotonic()
