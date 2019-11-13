@@ -9,8 +9,6 @@ import timeouter
 import unittest
 import time
 
-from types import SimpleNamespace
-
 
 class CustomTimeoutException(Exception):
     pass
