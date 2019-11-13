@@ -20,6 +20,7 @@ time.sleep(0.5)
 t.has(0.1) # True
 t.has(0.6) # False
 t.get() # returns remaining time
+t.get(laps=3) # returns remaining time, split into 3 equal laps
 t.reset() # resets timeout counter
 
 # raises TimeoutException if timeout is expired, message is optional

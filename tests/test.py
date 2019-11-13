@@ -45,7 +45,7 @@ class Test(unittest.TestCase):
         self.assertTrue(t.has(0.01))
         t.check()
         self.assertLess(t.get(), 0.1)
-        self.assertLess(t.get(5), 0.02)
+        self.assertLess(t.get(laps=5), 0.02)
 
 
 if __name__ == '__main__':
