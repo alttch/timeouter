@@ -21,10 +21,10 @@ class Timer():
                 message) if message is not None else self.TimeoutException
 
     def get(self):
-        return self.start_time + self._timeout - time.time()
+        return self.start_time + self._timeout - time.monotonic()
 
     def reset(self):
-        self.start_time = time.time()
+        self.start_time = time.monotonic()
 
     def set_timeout(self, timeout):
         self._timeout = float(timeout)
