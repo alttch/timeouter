@@ -1,16 +1,12 @@
 import time
 
 
-class TimeoutException(Exception):
-    pass
-
-
 class Timer():
 
     def __init__(self, timeout):
         self.set_timeout(timeout)
         self.reset()
-        self.TimeoutException = TimeoutException
+        self.TimeoutException = TimeoutError
 
     def has(self, timeout=0):
         return self.get() - timeout > 0
