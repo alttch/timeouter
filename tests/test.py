@@ -50,7 +50,6 @@ class Test(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    import argparse
     test_suite = unittest.TestLoader().loadTestsFromTestCase(Test)
     test_result = unittest.TextTestRunner().run(test_suite)
     sys.exit(not test_result.wasSuccessful())
