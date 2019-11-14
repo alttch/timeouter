@@ -1,12 +1,12 @@
-#!/usr/bin/env python3
+#!/usr/bin/env pytest
 
 from pathlib import Path
 import sys
+import pytest
 
 sys.path.insert(0, Path().absolute().parent.as_posix())
 import timeouter
 
-import unittest
 import time
 
 
@@ -14,42 +14,36 @@ class CustomTimeoutException(Exception):
     pass
 
 
-class Test(unittest.TestCase):
+def test001_thread():
+    timeouter.init(0.1)
+    _test_timer(timeouter)
 
-    def run(self, result=None):
-        if not result.errors:
-            super(Test, self).run(result)
 
-    def test001_thread(self):
-        timeouter.init(0.1)
-        self._test_timer(timeouter)
+def test002_object():
+    _test_timer(timeouter.Timer(0.1))
 
-    def test002_object(self):
-        self._test_timer(timeouter.Timer(0.1))
 
-    def test099_default_exception(self):
-        timeouter.set_default_exception_class(CustomTimeoutException)
-        t = timeouter.Timer(0.01)
-        time.sleep(0.011)
-        self.assertRaises(CustomTimeoutException, t.check)
-
-    def _test_timer(self, t):
-        time.sleep(0.05)
-        self.assertTrue(t.has(0.01))
-        self.assertFalse(t.has(1))
-        time.sleep(0.06)
-        self.assertFalse(t.has(0.01))
-        self.assertRaises(TimeoutError, t.check)
-        t.set_exception_class(CustomTimeoutException)
-        self.assertRaises(CustomTimeoutException, t.check)
-        t.reset()
-        self.assertTrue(t.has(0.01))
+def test099_default_exception():
+    timeouter.set_default_exception_class(CustomTimeoutException)
+    t = timeouter.Timer(0.01)
+    time.sleep(0.011)
+    with pytest.raises(CustomTimeoutException):
         t.check()
-        self.assertLess(t.get(), 0.1)
-        self.assertLess(t.get(laps=5), 0.02)
 
 
-if __name__ == '__main__':
-    test_suite = unittest.TestLoader().loadTestsFromTestCase(Test)
-    test_result = unittest.TextTestRunner().run(test_suite)
-    sys.exit(not test_result.wasSuccessful())
+def _test_timer(t):
+    time.sleep(0.05)
+    assert t.has(0.01) is True
+    assert t.has(1) is False
+    time.sleep(0.06)
+    assert t.has(0.01) is False
+    with pytest.raises(TimeoutError):
+        t.check()
+    t.set_exception_class(CustomTimeoutException)
+    with pytest.raises(CustomTimeoutException):
+        t.check()
+    t.reset()
+    assert t.has(0.01) is True
+    t.check()
+    assert t.get() < 0.1
+    assert t.get(laps=5) < 0.02
