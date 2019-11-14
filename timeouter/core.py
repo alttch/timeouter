@@ -19,10 +19,10 @@ class Timer():
                 message) if message is not None else self.TimeoutException
 
     def get(self, laps=1):
-        return (self.start_time + self._timeout - time.perf_counter()) / laps
+        return (self._start_time + self._timeout - time.perf_counter()) / laps
 
     def reset(self):
-        self.start_time = time.perf_counter()
+        self._start_time = time.perf_counter()
 
     def set_timeout(self, timeout):
         self._timeout = float(timeout)
