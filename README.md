@@ -23,8 +23,11 @@ t.get() # returns remaining time
 t.get(laps=3) # returns remaining time, split into 3 equal laps
 t.reset() # resets timeout counter
 
-# raises TimeoutError if timeout has expired, message is optional
+# raises TimeoutError if timer has expired, message is optional
 t.check(message=message)
+
+# get remaining time, raise TimeoutError if expired, message is optional
+t.get(check=True, check_message=message)
 ```
 
 ### Custom timeout exception
