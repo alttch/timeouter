@@ -23,7 +23,7 @@ class Timer():
     def get(self, laps=1, check=False, check_message=None):
         val = (self._start_time + self._timeout - time.perf_counter()) / laps
         if check:
-            self.check(check_message=check_message, _val=val)
+            self.check(message=check_message, _val=val)
         return val
 
     def reset(self):
